@@ -1,66 +1,65 @@
-# Krea2FactorAuth for Dolibarr ERP & CRM
+# Krea2FactorAuth for Dolibarr
 
-Krea2FactorAuth adds TOTP-based two-factor authentication to Dolibarr login.
+Krea2FactorAuth adds authenticator-app verification and centralized access policies to Dolibarr. Users keep their existing password provider and complete a six-digit, time-based one-time password (TOTP) challenge after enrolling an authenticator.
 
-The module delegates the primary password check to Dolibarr authentication providers, then verifies the user's TOTP code when a 2FA secret is enrolled. Successful Google OAuth logins are the explicit exception and skip the local authenticator-code challenge.
+## Features
+
+- TOTP enrollment with a QR code and verification from the user's own session.
+- A second-factor challenge during password login.
+- Administrator controls for mandatory enrollment and login locks.
+- Two-factor status on native Dolibarr user cards.
+- Optional Google OAuth login, domain restrictions and shared OAuth configuration.
+- Recovery by a Dolibarr super administrator when a user loses access to an authenticator.
+
+Successful Google OAuth login skips the module's local TOTP challenge. Any required Google multi-factor policy must be enforced in Google or Google Workspace.
 
 ## Requirements
 
-- Dolibarr 19 or later
-- PHP 7.1 or later
-- Composer dependencies installed in this module directory
+- Dolibarr 19 or later and PHP 7.1 or later.
+- Composer to install the module's locked dependencies.
+- A TOTP-compatible authenticator application for password-based two-factor login.
+- Dolibarr's native `googleoauth` provider for optional Google login.
 
-## Install
+## Installation
 
-From `htdocs/custom/krea2factorauth`:
+1. Place the module at `htdocs/custom/krea2factorauth`.
+2. Install dependencies from that directory:
 
-```bash
-composer install --no-dev
-```
+   ```bash
+   composer install --no-dev
+   ```
 
-Enable the module from Dolibarr module setup, then configure Dolibarr authentication mode in `htdocs/conf/conf.php` with this provider first:
+3. Enable **Krea2FactorAuth** in Dolibarr's module administration.
+4. Configure Dolibarr's authentication order in `htdocs/conf/conf.php` with this provider first:
 
-```php
-$dolibarr_main_authentication = 'krea2factorauth,dolibarr';
-```
+   ```php
+   $dolibarr_main_authentication = 'krea2factorauth,dolibarr';
+   ```
 
-Module activation and user enrollment are not enough by themselves. If this line is missing, commented, or starts with `dolibarr`, Dolibarr will authenticate the password before the 2FA provider can enforce TOTP.
+5. Review the module's access policies and complete enrollment with a test account before requiring it for your users.
 
-If LDAP is the primary password provider, set the module primary authentication modes to `ldap` from the module setup page and keep `krea2factorauth` first in Dolibarr authentication mode.
+The provider order is essential. Enabling the module and enrolling a user do not enforce TOTP if `krea2factorauth` is missing or another password provider authenticates first.
 
-## Google Login
+If LDAP checks your passwords, select `ldap` as the primary authentication mode in the module setup and keep `krea2factorauth` first in Dolibarr's authentication list.
 
-When the installed Dolibarr core exposes the native `googleoauth` login provider, the module adds a Google login setup tab.
+## User enrollment and recovery
 
-Configure Google OAuth credentials directly from the Krea2FactorAuth Google login tab in entity 1. The page stores them in Dolibarr's native `OAUTH_GOOGLE-Login_*` constants for entity 1, using provider key `Login`, and all login entities reuse that shared client ID and secret. Module-initiated Google login always uses the module callback so the shared credentials, selected login entity, domain policy, and optional user-card login email policy are enforced before the local authenticator-code challenge is skipped.
+Users open the module's enrollment page, scan the QR code in their authenticator and verify a code to finish enrollment. An administrator viewing another user's card sees that user's status, without receiving their enrollment QR code.
 
-The Google login tab provides public module-generated URLs for the Google Auth Platform application homepage, privacy policy, and terms of service fields. These pages are generic to the organization operating the Dolibarr instance and do not hardcode a customer or company name.
+Enrolled users cannot disable their own two-factor authentication. A Dolibarr super administrator, represented by an administrator attached to entity 0, can deactivate it from the affected user's card so the user can enroll again. Ordinary company administrators cannot disable an enrolled account or enroll an authenticator on another user's behalf.
 
-Keep `krea2factorauth` first in `htdocs/conf/conf.php`. Do not put `googleoauth` before this module, otherwise Google authentication can run outside the module's Google-domain and lock-policy checks.
+## Google login
 
-Optional allowed domains may be configured in the Google login tab. The allow-list is enforced against the Dolibarr user OAuth email (`email_oauth2`) when present, otherwise the Dolibarr user email.
+When Dolibarr provides the native Google OAuth provider, the module adds a **Google login** setup tab.
 
-## User Enrollment
+1. Configure the Google OAuth client from that tab in company/entity 1. These credentials are shared by the login entities.
+2. Use the callback and application-policy URLs provided by the setup page in the Google application configuration.
+3. Configure allowed domains and any login-email policy you require.
+4. Keep `krea2factorauth` first in `htdocs/conf/conf.php`, including before `googleoauth`.
 
-Users enroll from the standalone module enrollment page. Their native Dolibarr user card shows a security summary in the credentials table; administrators manage policies from Access Management. The secret is stored in Dolibarr `user_param` with `entity = 0`, intentionally global per user, and encrypted with Dolibarr's reversible encryption helper. Policy access still requires visibility of the target user in the selected entity.
+Module-initiated Google login uses its own callback to apply the selected company, domain and login-email policies. The domain allow-list checks the user's OAuth email when present, otherwise the Dolibarr user email.
 
-If an administrator opens another user's user card, the module shows the target user's 2FA status but does not display the enrollment QR code. The target user must sign in and complete QR verification from their own session.
-
-After enrollment, users cannot disable their own 2FA. Recovery deactivation is restricted to Dolibarr super administrators, which Dolibarr represents as admin users attached to entity 0.
-
-TOTP code entry uses a module-branded six-digit verification surface on both login and enrollment. The server still accepts the legacy `totp_code` field for compatibility.
-
-## Admin Recovery
-
-Super administrators can disable 2FA for a locked-out user from the target user's native Dolibarr user card. The module setup page manages mandatory enrollment and login locks. Normal entity administrators cannot disable enrolled 2FA accounts and cannot enroll a new authenticator device for another user; the target user must complete enrollment from their own authenticated session.
-
-## License
-
-GPL-3.0-or-later. See `COPYING` and `LICENSE`.
-
-## Security and Validation
-
-Read [SECURITY.md](SECURITY.md) for secure configuration and private vulnerability reporting. Google OAuth proves the Google account identity; administrators must enforce any required Google multi-factor policy in their Google account or Workspace settings.
+## Development and security
 
 Run the synthetic authentication regression suite without a database or external service:
 
@@ -69,4 +68,10 @@ composer install --no-dev --no-plugins --no-scripts
 php tests/authentication_provider_test.php
 ```
 
-GitHub Actions also checks PHP syntax, scans the complete Git history for secrets, and audits the locked Composer dependencies. See [ChangeLog.md](ChangeLog.md) for release changes. Repository publication does not deploy or update an installed Dolibarr instance.
+Read [SECURITY.md](SECURITY.md) for secure configuration and vulnerability reporting, and [ChangeLog.md](ChangeLog.md) for release changes.
+
+## License
+
+GPL-3.0-or-later. See [COPYING](COPYING) and [LICENSE](LICENSE).
+
+Maintained by [Kreativität Works](https://kreativitat.com).
