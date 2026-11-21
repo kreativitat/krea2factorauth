@@ -1,0 +1,1825 @@
+/*
+ * Copyright (C) 2026 Kreativität Works <mail@kreativitat.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ */
+
+:root {
+	--krea2fa-ink: #08111f;
+	--krea2fa-graphite: #182231;
+	--krea2fa-muted: #5c6878;
+	--krea2fa-border: #d9e1ea;
+	--krea2fa-soft: #f4f7f9;
+	--krea2fa-panel: #ffffff;
+	--krea2fa-green: #28c59b;
+	--krea2fa-green-dark: #128161;
+	--krea2fa-blue: #2563eb;
+	--krea2fa-red: #c92a2a;
+	--krea2fa-login-background: #eef3f7;
+}
+
+/* Dolibarr login page branding */
+.login_center .login_table_title {
+	display: none;
+}
+
+.login_center {
+	background: var(--krea2fa-login-background, #eef3f7) !important;
+}
+
+body.krea2factorauth-stable-login-background {
+	background-color: var(--krea2fa-login-background, #eef3f7) !important;
+	background-image: none !important;
+	opacity: 1 !important;
+	transition: none !important;
+}
+
+.login_vertical_align {
+	box-sizing: border-box;
+	padding: 28px 16px;
+}
+
+form#login {
+	width: min(100%, 456px);
+	margin: 0 auto;
+}
+
+form#login .login_table {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 456px;
+	margin: 0 auto;
+	padding: 16px 34px 34px;
+	border: 1px solid rgba(8, 17, 31, 0.08);
+	border-radius: 8px;
+	background: var(--krea2fa-panel);
+	box-shadow: 0 28px 70px rgba(8, 17, 31, 0.16);
+}
+
+form#login #login_line1 {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+form#login #login_line1 > br {
+	display: none;
+}
+
+form#login #login_left {
+	display: none !important;
+}
+
+form#login #login_right,
+form#login .tagtable {
+	box-sizing: border-box;
+	width: 100% !important;
+	max-width: none !important;
+}
+
+form#login #login_right {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+form#login .tagtable {
+	display: flex !important;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+form#login .trinputlogin {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0 0 14px;
+}
+
+form#login .tdinputlogin {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	min-height: 50px;
+	padding: 0 14px;
+	border: 1px solid var(--krea2fa-border);
+	border-radius: 8px;
+	background: #fbfcfd;
+	box-shadow: inset 0 1px 0 rgba(8, 17, 31, 0.03);
+}
+
+form#login .tdinputlogin > .fa {
+	flex: 0 0 22px;
+	width: 22px;
+	margin-right: 10px;
+	color: var(--krea2fa-muted);
+	text-align: center;
+}
+
+form#login .tdinputlogin:focus-within {
+	border-color: rgba(37, 99, 235, 0.72);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.13);
+}
+
+form#login input.flat {
+	box-sizing: border-box;
+	flex: 1 1 auto;
+	width: 100%;
+	min-width: 0;
+	height: 48px;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+	color: var(--krea2fa-ink);
+	font-size: 15px;
+	font-weight: 600;
+	box-shadow: none !important;
+	outline: 0;
+}
+
+html.krea2factorauth-login-page body form#login .login_table .tdinputlogin input#username,
+html.krea2factorauth-login-page body form#login .login_table .tdinputlogin input#password,
+html.krea2factorauth-login-page body form#login .login_table .tdinputlogin input#securitycode,
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login .login_table .tdinputlogin input#username,
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login .login_table .tdinputlogin input#password,
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login .login_table .tdinputlogin input#securitycode {
+	border: 0 !important;
+	background: transparent !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	caret-color: var(--krea2fa-ink);
+}
+
+html.krea2factorauth-login-page body form#login .login_table .tdinputlogin input#username:-webkit-autofill,
+html.krea2factorauth-login-page body form#login .login_table .tdinputlogin input#password:-webkit-autofill,
+html.krea2factorauth-login-page body form#login .login_table .tdinputlogin input#securitycode:-webkit-autofill,
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login .login_table .tdinputlogin input#username:-webkit-autofill,
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login .login_table .tdinputlogin input#password:-webkit-autofill,
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login .login_table .tdinputlogin input#securitycode:-webkit-autofill {
+	border: 0 !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	box-shadow: 0 0 0 1000px #fbfcfd inset !important;
+	-webkit-box-shadow: 0 0 0 1000px #fbfcfd inset !important;
+	-webkit-text-fill-color: var(--krea2fa-ink) !important;
+	caret-color: var(--krea2fa-ink);
+	transition: background-color 9999s ease-in-out 0s;
+}
+
+form#login input.flat::placeholder {
+	color: #8b97a6;
+	font-weight: 500;
+}
+
+html.krea2factorauth-login-page form#login .tdinputlogin:focus-within {
+	border-bottom: 1px solid rgba(37, 99, 235, 0.72) !important;
+	border-bottom-left-radius: 8px !important;
+	border-bottom-right-radius: 8px !important;
+}
+
+html.krea2factorauth-login-page form#login .tdinputlogin input.flat:focus {
+	border: 0 !important;
+	border-bottom: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+form#login .multicompany-trinputlogin .tdinputlogin {
+	position: relative;
+	min-height: 50px;
+	padding: 0 14px;
+	border-color: #d4dde7;
+	background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+}
+
+form#login .multicompany-trinputlogin .tdinputlogin > .fa-globe {
+	display: flex;
+	align-items: center;
+	flex: 1 1 auto;
+	width: 100%;
+	margin: 0;
+	color: var(--krea2fa-muted);
+	text-align: left;
+	font-size: 16px;
+}
+
+form#login .multicompany-trinputlogin .tdinputlogin > .fa-globe::before {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 22px;
+	width: 22px;
+	margin-right: 10px;
+	color: var(--krea2fa-muted);
+	font-size: 16px;
+}
+
+form#login .multicompany-trinputlogin .select2-container {
+	flex: 1 1 auto;
+	width: auto !important;
+	min-width: 0;
+}
+
+form#login .multicompany-trinputlogin .select2-selection--single {
+	display: flex;
+	align-items: center;
+	height: 48px !important;
+	border: 0 !important;
+	border-radius: 8px !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+html.krea2factorauth-login-page form#login .multicompany-trinputlogin .select2-container--open .select2-selection--single,
+html.krea2factorauth-login-page form#login .multicompany-trinputlogin .select2-container--focus .select2-selection--single,
+html.krea2factorauth-login-page form#login .multicompany-trinputlogin span.select2-selection.select2-selection--single:focus {
+	border: 0 !important;
+	border-bottom: 0 !important;
+	border-bottom-left-radius: 8px !important;
+	border-bottom-right-radius: 8px !important;
+	box-shadow: none !important;
+}
+
+form#login .multicompany-trinputlogin .select2-selection__rendered {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 42px 0 0 !important;
+	color: var(--krea2fa-ink) !important;
+	font-size: 15px;
+	font-weight: 900;
+	line-height: 48px !important;
+}
+
+form#login .multicompany-trinputlogin .select2-selection__arrow {
+	top: 0 !important;
+	right: 0 !important;
+	width: 32px !important;
+	height: 48px !important;
+}
+
+form#login .multicompany-trinputlogin .select2-selection__arrow b {
+	border-color: var(--krea2fa-muted) transparent transparent transparent !important;
+	border-width: 5px 4px 0 4px !important;
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-dropdown {
+	overflow: hidden;
+	border: 1px solid #d4dde7;
+	border-radius: 8px;
+	box-shadow: 0 18px 38px rgba(8, 17, 31, 0.16);
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-search--dropdown {
+	padding: 10px;
+	background: #f8fafb;
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-search--dropdown .select2-search__field {
+	box-sizing: border-box;
+	height: 38px;
+	padding: 0 10px;
+	border: 1px solid #d4dde7 !important;
+	border-radius: 8px;
+	color: var(--krea2fa-ink);
+	font-weight: 700;
+	outline: 0;
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+	border: 1px solid var(--krea2fa-blue) !important;
+	border-bottom: 1px solid var(--krea2fa-blue) !important;
+	border-bottom-left-radius: 8px !important;
+	border-bottom-right-radius: 8px !important;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.13);
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-results > .select2-results__options {
+	max-height: 280px;
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-results__option {
+	padding: 9px 12px;
+	color: var(--krea2fa-ink);
+	font-weight: 700;
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-results__option[aria-selected="true"] {
+	background: #e8fbf5;
+	color: var(--krea2fa-green-dark);
+}
+
+.krea2factorauth-login-page .select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background: var(--krea2fa-green-dark);
+	color: #ffffff;
+}
+
+.krea2factorauth-scope-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.krea2factorauth-scope-current {
+	display: flex;
+	align-items: center;
+	min-width: 180px;
+}
+
+form#login .krea2factorauth-login-challenge {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	min-height: 0;
+	padding: 18px;
+	border-color: rgba(40, 197, 155, 0.42);
+	background: linear-gradient(180deg, #f2fffb 0%, #ffffff 100%);
+}
+
+form#login .krea2factorauth-login-challenge-image-row {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	min-height: 118px;
+	max-height: 118px;
+	margin: 0 0 26px;
+	order: -20;
+	overflow: hidden;
+}
+
+form#login .krea2factorauth-login-challenge-image-row.krea2factorauth-login-challenge-image-missing {
+	display: none;
+	margin: 0;
+}
+
+form#login .krea2factorauth-login-challenge-image-row.krea2factorauth-login-challenge-image-loading img {
+	opacity: 0.62;
+}
+
+.krea2factorauth-login-challenge-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 118px;
+	min-width: 118px;
+	max-width: 118px;
+	height: 118px;
+	min-height: 118px;
+	max-height: 118px;
+	flex: 0 0 118px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.krea2factorauth-login-challenge-image img {
+	display: block;
+	width: 118px;
+	min-width: 118px;
+	max-width: 118px;
+	height: 118px;
+	min-height: 118px;
+	max-height: 118px;
+	object-fit: contain;
+	opacity: 1;
+	transition: opacity 0.16s ease;
+}
+
+.krea2factorauth-login-heading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	color: var(--krea2fa-ink);
+	font-size: 14px;
+	font-weight: 800;
+	line-height: 1.25;
+}
+
+.krea2factorauth-login-icon {
+	color: var(--krea2fa-green-dark);
+	font-size: 15px;
+}
+
+.krea2factorauth-login-hint {
+	color: var(--krea2fa-muted);
+	font-size: 13px;
+	line-height: 1.35;
+	text-align: center;
+}
+
+form#login .krea2factorauth-google-login-row {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	text-align: center;
+}
+
+form#login .krea2factorauth-login-or-separator {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	margin: 16px 0 14px;
+	color: #6f7782;
+	font-size: 12px;
+	font-weight: 800;
+	line-height: 1;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+form#login .krea2factorauth-login-or-separator::before,
+form#login .krea2factorauth-login-or-separator::after {
+	display: block;
+	flex: 1 1 auto;
+	height: 1px;
+	background: #d7dee7;
+	content: "";
+}
+
+form#login .krea2factorauth-login-or-separator span {
+	flex: 0 0 auto;
+}
+
+form#login .krea2factorauth-google-login-cell {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+form#login .krea2factorauth-google-login-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+	box-sizing: border-box;
+	min-width: min(100%, 286px);
+	min-height: 48px;
+	max-width: 100%;
+	padding: 0 22px;
+	border: 1px solid #747775;
+	border-radius: 999px;
+	background: #ffffff;
+	color: #202124;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	box-shadow: none;
+	cursor: pointer;
+	transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+form#login .krea2factorauth-google-login-button:hover,
+form#login .krea2factorauth-google-login-button:focus {
+	border-color: #5f6368;
+	background: #f7f8f8;
+	color: #202124;
+	box-shadow: 0 1px 2px rgba(60, 64, 67, 0.18), 0 0 0 3px rgba(32, 33, 36, 0.08);
+	outline: 0;
+}
+
+form#login .krea2factorauth-google-login-button:active {
+	background: #f1f3f4;
+	box-shadow: none;
+	transform: translateY(1px);
+}
+
+form#login .krea2factorauth-google-login-icon {
+	flex: 0 0 auto;
+	width: 28px;
+	color: #111111;
+	font-size: 28px;
+	line-height: 1;
+	text-align: center;
+}
+
+form#login #login_line2 {
+	margin-top: 4px;
+}
+
+form#login #login_line2 > br {
+	display: none;
+}
+
+form#login #login-submit-wrapper {
+	margin: 0;
+}
+
+form#login #login-submit-wrapper input[type="submit"] {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 52px;
+	margin: 0;
+	padding: 0 18px !important;
+	border: 1px solid var(--krea2fa-ink) !important;
+	border-radius: 8px !important;
+	background: var(--krea2fa-ink) !important;
+	color: #ffffff !important;
+	font-size: 16px;
+	font-weight: 800;
+	text-align: center;
+	box-shadow: 0 12px 28px rgba(8, 17, 31, 0.22);
+	cursor: pointer;
+	transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+form#login #login-submit-wrapper input[type="submit"]:hover,
+form#login #login-submit-wrapper input[type="submit"]:focus {
+	border-color: var(--krea2fa-green-dark) !important;
+	background: var(--krea2fa-green-dark) !important;
+	box-shadow: 0 14px 30px rgba(18, 129, 97, 0.25);
+	outline: 0;
+}
+
+form#login #login-submit-wrapper input[type="submit"]:active {
+	transform: translateY(1px);
+}
+
+/* Shared six-digit TOTP input */
+.krea2factorauth-code-input {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	max-width: 430px;
+}
+
+.krea2factorauth-code-label {
+	color: var(--krea2fa-ink);
+	font-size: 14px;
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.krea2factorauth-code-boxes {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	width: auto;
+	flex-wrap: nowrap;
+}
+
+.krea2factorauth-code-digit {
+	box-sizing: border-box;
+	flex: 0 0 48px;
+	width: 48px !important;
+	height: 56px;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 1px solid #c9d4df !important;
+	border-radius: 7px;
+	background: #ffffff !important;
+	color: var(--krea2fa-ink);
+	text-align: center;
+	font-size: 28px;
+	font-weight: 800;
+	line-height: 56px;
+	box-shadow: inset 0 1px 0 rgba(8, 17, 31, 0.04);
+}
+
+.krea2factorauth-code-digit:focus {
+	border: 1px solid var(--krea2fa-blue) !important;
+	border-bottom: 1px solid var(--krea2fa-blue) !important;
+	border-bottom-left-radius: 7px !important;
+	border-bottom-right-radius: 7px !important;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+	outline: 0;
+}
+
+.krea2factorauth-code-input-compact {
+	max-width: none;
+}
+
+.krea2factorauth-code-input-compact .krea2factorauth-code-label {
+	display: none;
+}
+
+.krea2factorauth-code-input-compact .krea2factorauth-code-boxes {
+	justify-content: center;
+	gap: 7px;
+}
+
+.krea2factorauth-code-input-compact .krea2factorauth-code-digit {
+	flex-basis: 42px;
+	width: 42px !important;
+	height: 48px;
+	font-size: 24px;
+	line-height: 48px;
+}
+
+form#login input.flat.krea2factorauth-code-digit {
+	box-sizing: border-box;
+	flex: 0 0 42px;
+	width: 42px !important;
+	height: 48px;
+	padding: 0 !important;
+	border: 1px solid #c9d4df !important;
+	border-radius: 7px;
+	background: #ffffff !important;
+	color: var(--krea2fa-ink);
+	text-align: center;
+	font-size: 24px;
+	font-weight: 800;
+	line-height: 48px;
+	box-shadow: inset 0 1px 0 rgba(8, 17, 31, 0.04) !important;
+}
+
+form#login input.flat.krea2factorauth-code-digit:focus {
+	border: 1px solid var(--krea2fa-blue) !important;
+	border-bottom: 1px solid var(--krea2fa-blue) !important;
+	border-bottom-left-radius: 7px !important;
+	border-bottom-right-radius: 7px !important;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18) !important;
+	outline: 0;
+}
+
+/* Embedded user-card 2FA panel */
+tr.field_options_krea2factorauth_email td.user_extras_krea2factorauth_email > .pictofixedwidth.fa-file {
+	display: inline-block;
+	width: 1.25em !important;
+	min-width: 1.25em;
+	height: 1em;
+	margin-right: 2px;
+	background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235c6878' d='M43.611 20.083H42V20H24v8h11.303C33.676 32.657 29.223 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z'/%3E%3Cpath fill='%235c6878' d='M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z'/%3E%3Cpath fill='%235c6878' d='M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.641-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z'/%3E%3Cpath fill='%235c6878' d='M43.611 20.083H42V20H24v8h11.303c-.781 2.237-2.219 4.166-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z'/%3E%3C/svg%3E") center center / 0.95em 0.95em no-repeat;
+	color: transparent !important;
+	font-size: inherit;
+	line-height: 1;
+	vertical-align: middle;
+}
+
+tr.field_options_krea2factorauth_email td.user_extras_krea2factorauth_email > .pictofixedwidth.fa-file::before {
+	content: "" !important;
+}
+
+.krea2factorauth-user-card-bottom {
+	box-sizing: border-box;
+	clear: both;
+	margin-top: 24px;
+	margin-bottom: 18px;
+	scroll-margin-top: 84px;
+}
+
+.krea2factorauth-standalone-page {
+	box-sizing: border-box;
+	width: min(1040px, 100%);
+	margin: 0 auto 28px;
+}
+
+.krea2factorauth-standalone-panel {
+	margin-top: 0;
+}
+
+.krea2factorauth-user-card-bottom .warning,
+.page-user-2fa .warning {
+	padding: 14px 16px;
+	border: 1px solid #f3c875;
+	border-radius: 8px;
+	background: #fff8e6;
+	color: #6f4500;
+	line-height: 1.45;
+}
+
+.krea2factorauth-console,
+.krea2factorauth-enroll-shell,
+.krea2factorauth-recovery-panel {
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid var(--krea2fa-border);
+	border-radius: 8px;
+	background: var(--krea2fa-panel);
+	box-shadow: 0 12px 34px rgba(8, 17, 31, 0.08);
+}
+
+.krea2factorauth-console {
+	padding: 24px;
+}
+
+.krea2factorauth-password-message {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	column-gap: 12px;
+}
+
+.krea2factorauth-password-message strong,
+.krea2factorauth-password-message span {
+	display: block;
+	grid-column: 1;
+}
+
+.krea2factorauth-password-message span {
+	margin-top: 4px;
+	line-height: 1.4;
+}
+
+.krea2factorauth-password-value {
+	grid-column: 1;
+	margin-top: 8px;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	user-select: text;
+}
+
+.krea2factorauth-password-copy {
+	-webkit-appearance: none;
+	appearance: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	grid-column: 2;
+	grid-row: 1 / span 3;
+	margin-top: 0;
+	padding: 2px 6px;
+	border: 1px solid currentColor;
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	font: inherit;
+	font-size: 12px;
+	line-height: 1.3;
+	opacity: 0.72;
+}
+
+.krea2factorauth-password-copy:hover,
+.krea2factorauth-password-copy:focus {
+	opacity: 1;
+	outline: 0;
+}
+
+.krea2factorauth-password-copy .fas {
+	font-size: 11px;
+	line-height: 1;
+}
+
+.krea2factorauth-password-copy-copied {
+	opacity: 1;
+}
+
+.krea2factorauth-password-copy-error {
+	opacity: 1;
+}
+
+.krea2factorauth-console-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.krea2factorauth-brand-lockup {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	min-width: 0;
+}
+
+.krea2factorauth-brand-logo {
+	display: block;
+	flex: 0 0 72px;
+	width: 72px;
+	height: 82px;
+	object-fit: contain;
+}
+
+.krea2factorauth-eyebrow {
+	margin-bottom: 5px;
+	color: var(--krea2fa-green-dark);
+	font-size: 12px;
+	font-weight: 800;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.krea2factorauth-console-title {
+	color: var(--krea2fa-ink);
+	font-size: 24px;
+	font-weight: 900;
+	line-height: 1.18;
+}
+
+.krea2factorauth-console-subtitle,
+.krea2factorauth-console-note {
+	margin-top: 6px;
+	color: var(--krea2fa-muted);
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.krea2factorauth-status-pill {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-width: 122px;
+	min-height: 42px;
+	padding: 0 14px;
+	border-radius: 8px;
+	font-weight: 900;
+	white-space: nowrap;
+}
+
+.krea2factorauth-status-dot {
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+.krea2factorauth-status-enabled {
+	border: 1px solid rgba(18, 129, 97, 0.22);
+	background: #e8fbf5;
+	color: var(--krea2fa-green-dark);
+}
+
+.krea2factorauth-status-disabled {
+	border: 1px solid rgba(92, 104, 120, 0.22);
+	background: #f3f5f7;
+	color: #4c5968;
+}
+
+.krea2factorauth-status-mandatory {
+	border: 1px solid rgba(200, 120, 0, 0.24);
+	background: #fff7e6;
+	color: #8a4b00;
+}
+
+.krea2factorauth-status-exempt {
+	border: 1px solid rgba(37, 99, 235, 0.22);
+	background: #eef4ff;
+	color: #1f4fa3;
+}
+
+.krea2factorauth-meta-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px;
+	margin-top: 20px;
+}
+
+.krea2factorauth-meta-grid > div {
+	min-width: 0;
+	padding: 14px;
+	border: 1px solid #e3e9ef;
+	border-radius: 8px;
+	background: var(--krea2fa-soft);
+}
+
+.krea2factorauth-meta-grid span {
+	display: block;
+	margin-bottom: 5px;
+	color: var(--krea2fa-muted);
+	font-size: 12px;
+	font-weight: 800;
+	text-transform: uppercase;
+}
+
+.krea2factorauth-meta-grid strong {
+	display: block;
+	overflow-wrap: anywhere;
+	color: var(--krea2fa-ink);
+	font-weight: 800;
+}
+
+.krea2factorauth-recovery-panel {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+	padding: 18px;
+	border-color: #f0c3c3;
+	background: #fff7f7;
+}
+
+.krea2factorauth-recovery-panel strong,
+.krea2factorauth-recovery-panel span {
+	display: block;
+}
+
+.krea2factorauth-recovery-panel strong {
+	color: var(--krea2fa-ink);
+	font-size: 16px;
+	font-weight: 900;
+}
+
+.krea2factorauth-recovery-panel span {
+	margin-top: 4px;
+	color: #714242;
+	line-height: 1.4;
+}
+
+.krea2factorauth-empty-state {
+	padding: 16px;
+	border: 1px solid #dfe7ef;
+	border-radius: 8px;
+	background: var(--krea2fa-soft);
+	color: var(--krea2fa-muted);
+	font-weight: 700;
+	line-height: 1.45;
+}
+
+.krea2factorauth-danger-button,
+.krea2factorauth-primary-button,
+.krea2factorauth-secondary-button {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 0 18px;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 900;
+	text-decoration: none !important;
+	cursor: pointer;
+	transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+
+.krea2factorauth-primary-button {
+	width: 100%;
+	min-height: 52px;
+	border: 1px solid var(--krea2fa-green) !important;
+	background: var(--krea2fa-green) !important;
+	color: #06131f !important;
+	box-shadow: 0 12px 26px rgba(40, 197, 155, 0.26);
+}
+
+.krea2factorauth-primary-button:hover,
+.krea2factorauth-primary-button:focus {
+	border-color: var(--krea2fa-green-dark) !important;
+	background: var(--krea2fa-green-dark) !important;
+	color: #ffffff !important;
+	outline: 0;
+}
+
+.krea2factorauth-danger-button {
+	flex: 0 0 auto;
+	border: 1px solid var(--krea2fa-red) !important;
+	background: var(--krea2fa-red) !important;
+	color: #ffffff !important;
+	box-shadow: 0 10px 22px rgba(201, 42, 42, 0.18);
+}
+
+.krea2factorauth-danger-button:hover,
+.krea2factorauth-danger-button:focus {
+	border-color: #a81919 !important;
+	background: #a81919 !important;
+	color: #ffffff !important;
+	outline: 0;
+}
+
+.krea2factorauth-secondary-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 14px;
+}
+
+.krea2factorauth-secondary-button {
+	border: 1px solid #cdd7e1;
+	background: #ffffff;
+	color: var(--krea2fa-ink) !important;
+}
+
+.krea2factorauth-secondary-button:hover,
+.krea2factorauth-secondary-button:focus {
+	border-color: var(--krea2fa-green-dark);
+	color: var(--krea2fa-green-dark) !important;
+	outline: 0;
+}
+
+.krea2factorauth-primary-button:active,
+.krea2factorauth-danger-button:active,
+.krea2factorauth-secondary-button:active {
+	transform: translateY(1px);
+}
+
+.krea2factorauth-enroll-shell {
+	display: grid;
+	grid-template-columns: minmax(250px, 0.85fr) minmax(360px, 1.15fr);
+	overflow: hidden;
+}
+
+.krea2factorauth-enroll-left {
+	padding: 30px;
+	background: var(--krea2fa-ink);
+	color: #ffffff;
+}
+
+.krea2factorauth-enroll-left h2 {
+	margin: 18px 0 10px;
+	color: #ffffff;
+	font-size: 24px;
+	font-weight: 900;
+	line-height: 1.18;
+}
+
+.krea2factorauth-enroll-left p {
+	margin: 0 0 18px;
+	color: #d7dee7;
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+.krea2factorauth-enroll-instruction {
+	display: flex;
+	align-items: flex-start;
+	gap: 9px;
+	max-width: 460px;
+	margin: 0 0 18px;
+	padding: 11px 12px;
+	border: 1px solid rgba(120, 240, 202, 0.38);
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.08);
+	color: #f6fbff;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1.45;
+}
+
+.krea2factorauth-enroll-instruction .fa {
+	flex: 0 0 auto;
+	margin-top: 2px;
+	color: #78f0ca;
+}
+
+.krea2factorauth-step-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 30px;
+	padding: 0 11px;
+	border: 1px solid rgba(40, 197, 155, 0.48);
+	border-radius: 999px;
+	background: rgba(40, 197, 155, 0.12);
+	color: #78f0ca;
+	font-size: 12px;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+.krea2factorauth-device-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 34px;
+	padding: 0 12px;
+	border: 1px solid rgba(255, 255, 255, 0.24);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.08);
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: 800;
+}
+
+.krea2factorauth-enroll-right {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	padding: 30px;
+	background: #ffffff;
+}
+
+.krea2factorauth-qr-tile {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+	padding: 18px;
+	border: 1px solid #e2e8ef;
+	border-radius: 8px;
+	background: var(--krea2fa-soft);
+	color: var(--krea2fa-muted);
+	font-weight: 800;
+}
+
+.krea2factorauth-qr-tile img {
+	display: block;
+	width: 180px;
+	height: 180px;
+	max-width: 100%;
+	border: 8px solid #ffffff;
+	border-radius: 8px;
+	background: #ffffff;
+	box-shadow: 0 8px 18px rgba(8, 17, 31, 0.08);
+}
+
+.krea2factorauth-secret-block {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	padding: 14px;
+	border: 1px solid #e1e8ef;
+	border-radius: 8px;
+	background: #fbfcfd;
+}
+
+.krea2factorauth-secret-block span {
+	color: var(--krea2fa-muted);
+	font-size: 12px;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+.krea2factorauth-secret-block code {
+	display: block;
+	overflow-wrap: anywhere;
+	color: var(--krea2fa-ink);
+	font-size: 13px;
+	font-weight: 800;
+}
+
+.krea2factorauth-enroll-right .krea2factorauth-code-input {
+	max-width: none;
+}
+
+.krea2factorauth-enroll-right .krea2factorauth-code-boxes {
+	gap: 10px;
+}
+
+.krea2factorauth-enroll-right .krea2factorauth-code-digit {
+	flex: 0 0 56px;
+	width: 56px !important;
+	min-width: 56px !important;
+	max-width: 56px !important;
+	height: 58px;
+	min-height: 58px;
+	font-size: 28px;
+	line-height: 58px;
+}
+
+body.page-krea2factorauth-enrollment form#krea2factorauth-enable .krea2factorauth-enroll-right input.flat.krea2factorauth-code-digit {
+	box-sizing: border-box;
+	flex: 0 0 56px !important;
+	width: 56px !important;
+	min-width: 56px !important;
+	max-width: 56px !important;
+	height: 58px !important;
+	min-height: 58px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: 28px !important;
+	line-height: 58px !important;
+	text-align: center !important;
+}
+
+.krea2factorauth-inline-action {
+	display: inline-block;
+	margin: 0 0 0 6px;
+	vertical-align: middle;
+}
+
+.krea2factorauth-settings-section {
+	scroll-margin-top: 84px;
+}
+
+.krea2factorauth-actions-grid {
+	display: inline-grid;
+	grid-template-columns: repeat(6, 32px);
+	gap: 6px;
+	justify-content: end;
+	width: 222px;
+}
+
+.krea2factorauth-actions-grid-without-google {
+	grid-template-columns: repeat(5, 32px);
+	width: 184px;
+}
+
+.krea2factorauth-actions-grid-without-totp {
+	grid-template-columns: repeat(3, 32px);
+	width: 108px;
+}
+
+.krea2factorauth-actions-grid-without-google.krea2factorauth-actions-grid-without-totp {
+	grid-template-columns: repeat(2, 32px);
+	width: 70px;
+}
+
+.krea2factorauth-action-slot {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+}
+
+.krea2factorauth-actions-grid .krea2factorauth-inline-action {
+	margin: 0;
+}
+
+.krea2factorauth-policy-states {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.krea2factorauth-policy-pill,
+.krea2factorauth-user-state-pill {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 24px;
+	padding: 0 9px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 900;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.krea2factorauth-managed-users-table .krea2factorauth-policy-pill,
+.krea2factorauth-managed-users-table .krea2factorauth-user-state-pill {
+	box-sizing: border-box;
+	width: 132px;
+	height: 26px;
+	min-height: 26px;
+	padding: 0 8px;
+	overflow: hidden;
+	text-align: center;
+	text-overflow: ellipsis;
+}
+
+.krea2factorauth-policy-pill-enabled,
+.krea2factorauth-user-state-pill-enabled {
+	border: 1px solid rgba(18, 129, 97, 0.22);
+	background: #e8fbf5;
+	color: var(--krea2fa-green-dark);
+}
+
+.krea2factorauth-policy-pill-mandatory {
+	border: 1px solid rgba(200, 120, 0, 0.24);
+	background: #fff7e6;
+	color: #8a4b00;
+}
+
+.krea2factorauth-policy-pill-exempt {
+	border: 1px solid rgba(37, 99, 235, 0.22);
+	background: #eef4ff;
+	color: #1f4fa3;
+}
+
+.krea2factorauth-policy-pill-optional {
+	border: 1px solid rgba(92, 104, 120, 0.22);
+	background: #f3f5f7;
+	color: #4c5968;
+}
+
+.krea2factorauth-policy-pill-locked,
+.krea2factorauth-user-state-pill-disabled {
+	border: 1px solid rgba(201, 42, 42, 0.22);
+	background: #fff1f1;
+	color: var(--krea2fa-red);
+}
+
+.krea2factorauth-icon-action {
+	-webkit-appearance: none;
+	appearance: none;
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 1px solid #cdd7e1;
+	border-radius: 8px;
+	background: #ffffff;
+	box-shadow: none;
+	color: var(--krea2fa-ink);
+	cursor: pointer;
+	font: inherit;
+	line-height: 1;
+	vertical-align: middle;
+}
+
+.krea2factorauth-icon-action .fas,
+.krea2factorauth-icon-action .fab {
+	font-size: 13px;
+	line-height: 1;
+}
+
+.krea2factorauth-icon-action:hover,
+.krea2factorauth-icon-action:focus {
+	border-color: var(--krea2fa-green-dark);
+	color: var(--krea2fa-green-dark);
+	outline: 0;
+}
+
+.krea2factorauth-icon-action-danger {
+	border-color: rgba(201, 42, 42, 0.28);
+	color: var(--krea2fa-red);
+}
+
+.krea2factorauth-icon-action-danger:hover,
+.krea2factorauth-icon-action-danger:focus {
+	border-color: var(--krea2fa-red);
+	background: #fff1f1;
+	color: var(--krea2fa-red);
+}
+
+.krea2factorauth-icon-action-inactive,
+.krea2factorauth-icon-action-inactive:disabled {
+	border-color: #cdd7e1;
+	background: #ffffff;
+	color: transparent;
+	cursor: default;
+	opacity: 1;
+	pointer-events: none;
+}
+
+.krea2factorauth-exempt-password-control {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.krea2factorauth-admin-toggle {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px;
+	border: 1px solid #cdd7e1;
+	border-radius: 8px;
+	background: #f6f8fb;
+	gap: 3px;
+}
+
+.krea2factorauth-admin-toggle input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.krea2factorauth-admin-toggle label {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 58px;
+	min-height: 30px;
+	padding: 0 12px;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	color: var(--krea2fa-muted);
+	font-size: 13px;
+	font-weight: 900;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.krea2factorauth-admin-toggle input:checked + label {
+	border-color: rgba(18, 129, 97, 0.28);
+	background: #ffffff;
+	color: var(--krea2fa-green-dark);
+	box-shadow: 0 4px 12px rgba(8, 17, 31, 0.08);
+}
+
+.krea2factorauth-admin-toggle input:focus + label {
+	box-shadow: 0 0 0 3px rgba(18, 129, 97, 0.14);
+}
+
+.krea2factorauth-scope-form {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin: 0;
+}
+
+.krea2factorauth-settings-button {
+	box-sizing: border-box;
+	min-height: 32px;
+	padding-right: 14px !important;
+	padding-left: 14px !important;
+	vertical-align: middle;
+}
+
+.krea2factorauth-color-setting {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.krea2factorauth-color-input {
+	box-sizing: border-box;
+	width: 44px;
+	height: 34px;
+	min-width: 44px;
+	padding: 2px !important;
+	border: 1px solid var(--krea2fa-border) !important;
+	border-radius: 8px;
+	background: #ffffff !important;
+	cursor: pointer;
+}
+
+.krea2factorauth-current-entity-badge {
+	display: inline-flex;
+	align-items: center;
+	min-height: 26px;
+	padding: 0 9px;
+	border: 1px solid rgba(18, 129, 97, 0.24);
+	border-radius: 999px;
+	background: #eefbf6;
+	color: var(--krea2fa-green-dark);
+	font-size: 12px;
+	font-weight: 800;
+}
+
+.krea2factorauth-checkbox-inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--krea2fa-muted);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.krea2factorauth-login-logo-setting {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	flex-wrap: wrap;
+}
+
+.krea2factorauth-login-logo-preview {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 240px;
+	width: 240px;
+	max-width: 100%;
+	height: 150px;
+	border: 1px solid #cdd7e1;
+	border-radius: 8px;
+	background: #fbfcfd;
+	color: var(--krea2fa-muted);
+}
+
+.krea2factorauth-login-logo-preview img {
+	display: block;
+	width: auto;
+	height: auto;
+	max-width: 210px;
+	max-height: 122px;
+	object-fit: contain;
+}
+
+.krea2factorauth-login-logo-preview .fa {
+	font-size: 54px;
+	line-height: 1;
+}
+
+.krea2factorauth-login-logo-control {
+	display: flex;
+	flex: 1 1 320px;
+	flex-direction: column;
+	gap: 6px;
+	min-width: 260px;
+}
+
+.krea2factorauth-login-logo-remove {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	width: fit-content;
+}
+
+.krea2factorauth-postlogin-warning {
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	z-index: 10000;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	max-width: min(520px, calc(100vw - 32px));
+	padding: 16px;
+	border: 1px solid rgba(18, 129, 97, 0.28);
+	border-radius: 8px;
+	background: #ffffff;
+	box-shadow: 0 18px 42px rgba(8, 17, 31, 0.18);
+	color: var(--krea2fa-ink);
+}
+
+.krea2factorauth-postlogin-warning strong,
+.krea2factorauth-postlogin-warning span {
+	display: block;
+}
+
+.krea2factorauth-postlogin-warning strong {
+	font-size: 14px;
+	font-weight: 900;
+	line-height: 1.25;
+}
+
+.krea2factorauth-postlogin-warning span {
+	margin-top: 3px;
+	color: var(--krea2fa-muted);
+	font-size: 13px;
+	line-height: 1.35;
+}
+
+.krea2factorauth-postlogin-warning a {
+	flex: 0 0 auto;
+	padding: 10px 13px;
+	border-radius: 8px;
+	background: var(--krea2fa-green-dark);
+	color: #ffffff !important;
+	font-weight: 900;
+	text-decoration: none !important;
+}
+
+.krea2factorauth-enrollment-modal-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 20000;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	background: rgba(8, 17, 31, 0.48);
+}
+
+.krea2factorauth-enrollment-modal {
+	box-sizing: border-box;
+	width: min(520px, 100%);
+	padding: 34px;
+	border: 1px solid rgba(8, 17, 31, 0.1);
+	border-radius: 8px;
+	background: #ffffff;
+	box-shadow: 0 28px 70px rgba(8, 17, 31, 0.28);
+	color: var(--krea2fa-ink);
+	text-align: center;
+}
+
+.krea2factorauth-enrollment-modal-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 74px;
+	height: 74px;
+	margin: 0 auto 18px;
+	border-radius: 50%;
+	background: #e8fbf5;
+	color: var(--krea2fa-green-dark);
+	font-size: 30px;
+}
+
+.krea2factorauth-enrollment-modal h2 {
+	margin: 0;
+	color: var(--krea2fa-ink);
+	font-size: 24px;
+	font-weight: 900;
+	line-height: 1.2;
+}
+
+.krea2factorauth-enrollment-modal p {
+	margin: 10px 0 0;
+	color: var(--krea2fa-muted);
+	font-size: 15px;
+	line-height: 1.45;
+}
+
+.krea2factorauth-google-email-modal-input {
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 18px;
+	text-align: left;
+}
+
+.krea2factorauth-google-email-modal-error {
+	margin-top: 10px;
+	color: var(--krea2fa-red);
+	font-weight: 700;
+	line-height: 1.4;
+	text-align: left;
+}
+
+.krea2factorauth-enrollment-modal-actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 26px;
+}
+
+.krea2factorauth-enrollment-modal-actions form {
+	margin: 0;
+}
+
+.krea2factorauth-enrollment-modal-actions .krea2factorauth-primary-button,
+.krea2factorauth-enrollment-modal-actions .krea2factorauth-danger-button,
+.krea2factorauth-enrollment-modal-actions .krea2factorauth-secondary-button {
+	min-width: 150px;
+}
+
+.krea2factorauth-reset-confirm .krea2factorauth-danger-button,
+.krea2factorauth-reset-confirm .krea2factorauth-secondary-button {
+	width: auto;
+}
+
+html.krea2factorauth-login-page body form#login #login_line1 .tdinputlogin input.flat:focus:not(.button):not(.buttonwebsite):not(.buttonreset):not(.select2-search__field):not(#top-bookmark-search-input):not(.search_component_input):not(.input-nobottom),
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login #login_line1 .tdinputlogin input.flat:focus:not(.button):not(.buttonwebsite):not(.buttonreset):not(.select2-search__field):not(#top-bookmark-search-input):not(.search_component_input):not(.input-nobottom) {
+	border: 0 !important;
+	border-bottom: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+html.krea2factorauth-login-page body form#login #login_line1 .tdinputlogin input.flat.krea2factorauth-code-digit:focus:not(.button):not(.buttonwebsite):not(.buttonreset):not(.select2-search__field):not(#top-bookmark-search-input):not(.search_component_input):not(.input-nobottom),
+html.krea2factorauth-login-page body form#login.krea2factorauth-branded-login #login_line1 .tdinputlogin input.flat.krea2factorauth-code-digit:focus:not(.button):not(.buttonwebsite):not(.buttonreset):not(.select2-search__field):not(#top-bookmark-search-input):not(.search_component_input):not(.input-nobottom) {
+	border: 1px solid var(--krea2fa-blue) !important;
+	border-bottom: 1px solid var(--krea2fa-blue) !important;
+	border-bottom-left-radius: 7px !important;
+	border-bottom-right-radius: 7px !important;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18) !important;
+}
+
+html.krea2factorauth-login-page body form#login #login_line1 .multicompany-trinputlogin .select2-container--open .select2-selection--single,
+html.krea2factorauth-login-page body form#login #login_line1 .multicompany-trinputlogin .select2-container--focus .select2-selection--single,
+html.krea2factorauth-login-page body form#login #login_line1 .multicompany-trinputlogin span.select2-selection.select2-selection--single:focus {
+	border: 0 !important;
+	border-bottom: 0 !important;
+	border-bottom-left-radius: 8px !important;
+	border-bottom-right-radius: 8px !important;
+	box-shadow: none !important;
+}
+
+@media (max-width: 900px) {
+	.krea2factorauth-console-header,
+	.krea2factorauth-recovery-panel {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.krea2factorauth-meta-grid,
+	.krea2factorauth-enroll-shell {
+		grid-template-columns: 1fr;
+	}
+
+	.krea2factorauth-danger-button {
+		width: 100%;
+	}
+}
+
+@media (max-width: 640px) {
+	.login_vertical_align {
+		padding: 16px 10px;
+	}
+
+	form#login .login_table {
+		padding: 16px 18px 24px;
+	}
+
+	.krea2factorauth-console,
+	.krea2factorauth-enroll-left,
+	.krea2factorauth-enroll-right {
+		padding: 20px;
+	}
+
+	.krea2factorauth-brand-lockup {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.krea2factorauth-brand-logo {
+		width: 56px;
+		height: 64px;
+	}
+
+	.krea2factorauth-console-title,
+	.krea2factorauth-enroll-left h2 {
+		font-size: 21px;
+	}
+
+	.krea2factorauth-qr-tile {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.krea2factorauth-qr-tile img {
+		width: 168px;
+		height: 168px;
+	}
+
+	.krea2factorauth-code-boxes {
+		gap: 6px;
+	}
+
+	.krea2factorauth-code-digit,
+	.krea2factorauth-code-input-compact .krea2factorauth-code-digit {
+		flex-basis: 36px;
+		width: 36px !important;
+		height: 44px;
+		font-size: 21px;
+		line-height: 44px;
+	}
+
+	.krea2factorauth-enroll-right .krea2factorauth-code-boxes {
+		gap: 8px;
+	}
+
+	.krea2factorauth-enroll-right .krea2factorauth-code-digit {
+		flex-basis: 44px;
+		width: 44px !important;
+		min-width: 44px !important;
+		max-width: 44px !important;
+		height: 48px;
+		min-height: 48px;
+		font-size: 22px;
+		line-height: 48px;
+	}
+
+	body.page-krea2factorauth-enrollment form#krea2factorauth-enable .krea2factorauth-enroll-right input.flat.krea2factorauth-code-digit {
+		flex-basis: 44px !important;
+		width: 44px !important;
+		min-width: 44px !important;
+		max-width: 44px !important;
+		height: 48px !important;
+		min-height: 48px !important;
+		font-size: 22px !important;
+		line-height: 48px !important;
+	}
+
+	.krea2factorauth-postlogin-warning {
+		right: 12px;
+		bottom: 12px;
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.krea2factorauth-enrollment-modal-backdrop {
+		padding: 14px;
+	}
+
+	.krea2factorauth-enrollment-modal {
+		padding: 26px 20px;
+	}
+
+	.krea2factorauth-enrollment-modal h2 {
+		font-size: 21px;
+	}
+
+	.krea2factorauth-enrollment-modal-actions {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.krea2factorauth-enrollment-modal-actions .krea2factorauth-primary-button,
+	.krea2factorauth-enrollment-modal-actions .krea2factorauth-danger-button,
+	.krea2factorauth-enrollment-modal-actions .krea2factorauth-secondary-button {
+		width: 100%;
+	}
+}
+
+@media (max-width: 380px) {
+	.krea2factorauth-enroll-right .krea2factorauth-code-boxes {
+		gap: 5px;
+	}
+
+	.krea2factorauth-enroll-right .krea2factorauth-code-digit {
+		flex-basis: 38px;
+		width: 38px !important;
+		min-width: 38px !important;
+		max-width: 38px !important;
+		height: 46px;
+		min-height: 46px;
+		font-size: 21px;
+		line-height: 46px;
+	}
+
+	body.page-krea2factorauth-enrollment form#krea2factorauth-enable .krea2factorauth-enroll-right input.flat.krea2factorauth-code-digit {
+		flex-basis: 38px !important;
+		width: 38px !important;
+		min-width: 38px !important;
+		max-width: 38px !important;
+		height: 46px !important;
+		min-height: 46px !important;
+		font-size: 21px !important;
+		line-height: 46px !important;
+	}
+}

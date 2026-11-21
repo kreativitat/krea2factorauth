@@ -1,0 +1,15 @@
+{
+    "name": "kreativitat/krea2factorauth",
+    "description": "TOTP two-factor authentication module for Dolibarr.",
+    "type": "dolibarr-module",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "robthree/twofactorauth": "^1.8",
+        "bacon/bacon-qr-code": "^2.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.1.0"
+        }
+    }
+}

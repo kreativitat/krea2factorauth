@@ -1,0 +1,87 @@
+name: Security checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '23 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    name: PHP syntax and authentication regressions
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Lint tracked PHP files
+        env:
+          PHP_IMAGE: php:8.2-cli-bookworm@sha256:2867ae7fa1f7f248b94897c81d9154255526aec97b8493de708178700ebc147a
+        run: |
+          git ls-files -z '*.php' | docker run --rm -i --network none \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/app,readonly" \
+            --workdir /app "$PHP_IMAGE" xargs -0 -r -n 1 php -l
+      - name: Install locked test dependencies without scripts or plugins
+        env:
+          COMPOSER_IMAGE: composer:2@sha256:50ea4d33fdcde1adb0f045547295faa1548b33872e5f789dae5b02ce2fb5de93
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/vendor"
+          docker run --rm --tmpfs /tmp --env COMPOSER_HOME=/tmp/composer \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/app,readonly" \
+            --mount "type=bind,source=$GITHUB_WORKSPACE/vendor,target=/app/vendor" \
+            --workdir /app "$COMPOSER_IMAGE" \
+            --no-plugins --no-scripts install --no-dev --prefer-dist --no-interaction --no-progress
+      - name: Test authentication policy
+        env:
+          PHP_IMAGE: php:8.2-cli-bookworm@sha256:2867ae7fa1f7f248b94897c81d9154255526aec97b8493de708178700ebc147a
+        run: |
+          docker run --rm --network none --tmpfs /tmp \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/app,readonly" \
+            --workdir /app "$PHP_IMAGE" php tests/authentication_provider_test.php
+
+  secrets:
+    name: Full-history secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify and run Gitleaks
+        env:
+          GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+        run: |
+          curl --fail --silent --show-error --location --retry 3 \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz \
+            --output "$RUNNER_TEMP/gitleaks.tar.gz"
+          printf '%s  %s\n' "$GITLEAKS_SHA256" "$RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check --status
+          tar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks
+          "$RUNNER_TEMP/gitleaks" git --redact --no-banner --log-opts=--all .
+
+  dependencies:
+    name: Locked dependency security audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Audit without installing or executing project dependencies
+        env:
+          COMPOSER_IMAGE: composer:2@sha256:50ea4d33fdcde1adb0f045547295faa1548b33872e5f789dae5b02ce2fb5de93
+        run: |
+          docker run --rm --tmpfs /tmp --env COMPOSER_HOME=/tmp/composer \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/app,readonly" \
+            --workdir /app "$COMPOSER_IMAGE" \
+            --no-plugins --no-scripts audit --locked --no-dev --no-interaction
